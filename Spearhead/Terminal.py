@@ -14,9 +14,15 @@ def run_c(c):
 def main():
     while True:
         #get user input and check if it is "exit"
+        print("Enter +h into command line for terminal guide")
         u_i = input("cmd< ")
         if u_i.lower() == "exit":
             break
+        #get user input and check if it is "+help"
+        elif u_i[:2] == "+h":
+            print("Terminal instructions:")
+            print("Press the enter key or enter \"exit\" into the command line to leave the terminal")
+            print("Enter the command \"+r [replace with path of .spearhead file to be ran]\" to run a .spearhead file via the Spearhead Interpreter")
         #get user input and check if it is "+r"
         elif u_i[:2] == "+r":
             try:
@@ -28,7 +34,7 @@ def main():
                 print("Directory invalid")
             continue
         else:
-            print("Invalid command, or shell command")
+            print("Invalid command")
         #actually run the commands provided and print output
         output = run_c(u_i)
         print(output)
