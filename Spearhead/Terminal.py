@@ -1,14 +1,12 @@
 import subprocess
 import sys
 import os
-errorCaught = ""
 dir_path = os.path.dirname(os.path.realpath(__file__))
 dir_path = dir_path + "\\Y_frontend.py"
 def run_c(c):
-    global errorCaught
     try:
         #start terminal and get output
-        output = subprocess.check_output(c, shell=True, stderr=subprocess.STDOUT)
+        output = subprocess.check_output(c, shell=True, stderr=subprocess.DEVNULL).decode()
         return output.decode()
     except subprocess.CalledProcessError as e:
         #incase i need to handle errors later
@@ -22,8 +20,11 @@ def main():
         #get user input and check if it is "+r"
         elif u_i[:2] == "+r":
             try:
-                subprocess.run(["python", dir_path, u_i])
-            except FileNotFoundError:
+                r = subprocess.run(["python", dir_path, u_i], capture_output=True, text=True).stdout.strip("\n")
+                print(r)
+                if r == '':
+                    print("Directory invalid")
+            except FileNotFoundError as e:
                 print("Directory invalid")
             continue
         else:
