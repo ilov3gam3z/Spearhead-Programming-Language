@@ -1,2 +1,3 @@
+require boolOperators
 LINE 1
 print "Hello, World!"

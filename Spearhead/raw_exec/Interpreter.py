@@ -3,6 +3,13 @@ def lexer(contents):
     lines = contents.split('\n')
     for line in lines:
         chars = list(line)
+        requirements = []
+        if re.match('require', line):
+            r = True
+        if re.search(' boolOperators', line):
+             b = True
+        if b and r == True:
+            requirements.append('boolOperators')
         temp_str = ""
         tokens = []
         quote_count = 0
