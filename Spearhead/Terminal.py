@@ -41,7 +41,7 @@ def main():
                 print("Err1x1: Directory invalid")
             continue
         else:
-            print("Err0x2 :Invalid command")
+            print("Err0x2: Invalid command")
         #actually run the commands provided and print output
         output = run_c(u_i)
         print(output)
